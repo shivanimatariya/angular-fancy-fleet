@@ -1,0 +1,28 @@
+<!-- ===============================================-->
+<!--    Main Content-->
+<!-- ===============================================-->
+<main class="main position-relative" [ngClass]="{'overflow-hidden': dialogService.showConfirmDeleteDialog}" id="top">
+  <!-- <div class="container-fluid" data-layout="container"> -->
+    <a class="navbar-brand">
+      <div class="d-flex align-items-center py-3 py-md-4 px-md-4 px-3">
+        <span (click)="collapseSidebar()" class="d-flex align-items-center justify-content-center">
+          <span class="fas fa-bars text-secondary nav-bar-icon"></span>
+        </span>
+        <span class="fas fa-car-side company-name-logo me-2 text-primary" routerLink=""></span>
+        <span class="fw-bold company-name-logo text-primary" routerLink="">Fancy Fleet</span>
+      </div>
+    </a>
+    <div class="content">
+      <div class="d-flex h-100">
+        <div class="fleet-sidenav" [ngClass]="{'w-small': isSidebarOpen}">
+          <nav app-navbar-vertical [isSidebarOpen]="isSidebarOpen"
+            class="navbar navbar-light navbar-vertical navbar-expand-xl mr-3 w-100 py-0">
+          </nav>
+        </div>
+        <div class="fleet-content px-2 px-lg-4 py-2 pt-lg-0 pb-lg-4 " [ngClass]="{'w-big': isSidebarOpen}">
+          <router-outlet></router-outlet>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+</main>

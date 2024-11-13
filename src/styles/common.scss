@@ -1,0 +1,108 @@
+@import 'variable';
+@import 'components/table';
+@import 'components/card';
+@import 'components/accordion';
+@import './components/dropdown';
+@import './components/form';
+@import './customHtmlStyles';
+@import 'responsive';
+::-webkit-scrollbar {
+  width: 6px;
+  height: 0;
+  @include md{
+    width: 0;
+  }
+}
+::-webkit-scrollbar-track {
+  background: #EDF2F7;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(170, 169, 169, 0.575);
+  border-radius: 10px;
+}
+body {
+  background-color: #EDF2F7;
+  font-family: $font-family-base;
+}
+label {
+  display: inline-block;
+  font-size: $label-font-size;
+  color: $label-color;
+}
+ul>li {
+  list-style-type: none;
+}
+.btn:active {
+  outline: none;
+  border-color: transparent !important;
+}
+.btn-outline:hover {
+  background-color: #EDF2F7 !important;
+  color: $secondary;
+}
+.btn-transparent:hover {
+  background-color: $light;
+}
+.filter-btns {
+  color: $data-text-color;
+}
+.active {
+  color: $btn-active-color;
+}
+.form-control:focus,
+.form-select:focus,
+.accordion-button:focus,
+.form-check-input:focus {
+  box-shadow: none;
+}
+.fleet-wrapper {
+  background-color: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.08) 0px 0px 6px;
+  // margin-bottom: 24px;
+}
+.disabled {
+  background-color: #EEEFF1;
+  color: black;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.multiselect-dropdown {
+  background-color: $white !important;
+  min-width: 160px;
+  .dropdown-btn {
+      border: none;
+      display: flex !important;
+      align-items: center;
+      gap: 8px;
+      .selected-item-container {
+          display: inline-flex !important;
+          float: none !important;
+          .selected-item {
+              font-size: 16px;
+              @include xs{
+                font-size: 14px;
+              }
+          }
+      }
+      .dropdown-multiselect__caret:before {
+          top: 75% !important;
+      }
+  }
+}
+::ng-deep {
+  .dropdown-list {
+      width: 400px !important;
+      @include md {
+          width: 100% !important;
+      }
+  }
+}
+.fleet-content-wrapper {
+  max-height: calc(100vh - 226px);
+  @include md{
+    max-height: calc(100vh - 196px);
+  }
+}

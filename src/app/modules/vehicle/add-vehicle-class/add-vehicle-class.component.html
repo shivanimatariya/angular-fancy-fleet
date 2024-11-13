@@ -1,0 +1,84 @@
+<h2 class="d-inline-block mb-3  mb-md-4">{{ (selectedData && (dialogService.showEditVehicleClassModal || dialogService.showEditVehicleClassModalView)) ? 'Edit Vehicle Class' : 'Add Vehicle Class' }}</h2>
+<div class="fleet-content-wrapper">
+  <div class="vehicle-detail-form">
+      <div class="fleet-wrapper px-4 py-3" style="overflow: inherit !important;">
+          <h2 class="d-inline-block fs-5 mb-3" id="heading1">Details</h2>
+          <form [formGroup]="vehicleClassForm" (ngSubmit)="onSubmit()">
+              <div class="row gy-2">
+                  <div class="col-12">
+                      <label class="mb-2">Vehicle types</label>
+                      <select formControlName="vehicleType" class="form-select border rounded-2 px-md-3 py-2 rounded-3 w-100 fw-medium">
+                        @for (class of vehicleTypes; track class; let i = $index) {
+                          <option [value]="class">{{ class }}</option>
+                          }
+                      </select>
+                  </div>
+                  <div class="col-12">
+                      <label class="mb-2">Vehicle Class</label>
+                      <!-- <input formControlName="class" type="text" class="form-control border rounded-2 px-md-3 py-2 rounded-3 w-100 fw-medium">
+                      <span class="example">e.g. Full Size SUV, Standard SUV</span> -->
+
+                      <select formControlName="class" class="form-select border rounded-2 px-md-3 py-2 rounded-3 w-100 fw-medium" [disabled]="!vehicleClassForm.get('vehicleType')?.value" [class.disabled]="!vehicleClassForm.get('vehicleType')?.value">
+                        @for (class of vehicleClasses[vehicleClassForm.get('vehicleType')?.value]; track class; let i = $index) {
+                          <option [value]="class">{{ class }}</option>
+                          }
+                      </select>
+                  </div>
+                  <div class="col-12">
+                      <label class="mb-2">Passenger</label>
+                      <select formControlName="passenger" class="form-select border rounded-2 px-md-3 py-2 rounded-3 w-100 fw-medium">
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                      </select>
+                  </div>
+                  <div class="col-12">
+                      <label class="mb-2">Active</label>
+                      <select formControlName="active" class="form-select border rounded-2 px-md-3 py-2 rounded-3 w-100 fw-medium">
+                          <option>Yes</option>
+                          <option>No</option>
+                      </select>
+                  </div>
+                  <div class="col-12">
+                      <label class="mb-2">Features</label>
+                      <ng-multiselect-dropdown #multiSelect
+                        class="dropdown"
+                        [settings]="settings"
+                        [placeholder]="'Features'"
+                        [data]="features"
+                        formControlName="features"
+                        [(ngModel)]="selectedFeatures"
+                        >
+                      </ng-multiselect-dropdown>
+                  </div>
+              </div>
+          </form>
+      </div>
+      <div class="mt-4 mb-3 me-md-2">
+        <button #openModalButton class="btn btn-tranparent outline-0" (click)="onCancel()">Cancel</button>
+        <button class="btn btn-secondary float-end" type="submit" (click)="onSubmit(); closeForm()" [disabled]="vehicleClassForm.invalid">Save Vehicle</button>
+  </div>
+  </div>
+</div>
+
+  <div class="modal fade overflow-hidden" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true" >
+  <div class="modal-dialog modal-sm rounded-3">
+    <div class="modal-content bg-white">
+      <div class="modal-body">
+        <p class="mb-4 fw-medium text-center">You have unsaved changes.<br/>You want to close it?</p>
+        <div class="d-flex align-items-center justify-content-center gap-3">
+          <button type="button" class="btn btn-sm btn-outline-secondary rounded-2"
+          data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-sm btn-outline-danger rounded-2" (click)="closeModalWithoutSaving()" data-bs-dismiss="modal">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

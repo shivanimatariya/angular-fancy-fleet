@@ -1,0 +1,12 @@
+<div class="d-flex justify-content-between mb-3  mb-md-4">
+    <h2 class="d-inline-block">Vehicle Class List</h2>
+    <div id="table-customers-replace-element" (click)="addvehicleClass()">
+      <button type="button" class="btn btn-secondary"><span class="fas fa-plus"
+          data-fa-transform="shrink-3 down-2"></span><span class="d-none d-sm-inline-block ms-1">Add Vehicle Class</span></button>
+    </div>
+</div>
+
+  <div>
+    <app-listing [tableData]="vehicleClassData" [headers]="headers" [isOneEditIconOnly]="isOneEditIconOnly" (rowClicked)="onRowClicked($event)" (editClicked)="onEditClicked($event)"></app-listing>
+  </div>
+
